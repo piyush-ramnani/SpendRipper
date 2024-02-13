@@ -56,6 +56,22 @@ We can use application performance monitoring (APM) tools or error tracking serv
 - The bank should have the sum of the amount all the users hold.
 - Example: If user 1 has Rs. 1000 and user 2 has 100 rs. the bank should hold their sum that is Rs. 1100
 - Ability to revert a transaction if it did not go through.
+- `sessions` by databases are used to handle transaction and make them atomic in nature.
+
+```javascript
+const session = await mongoose.startSession();
+session.startTransaction();
+//rest of the code
+await session.commitTransaction();
+session.endSession();
+```
+
+- In case any error occurs during the execution of the transactions then use this method to rollback everything.
+- If any error occurs in the code block, `session.abortTransaction()` is called which will rollback everything done inside this block.
+
+```javascript
+session.abortTransaction();
+```
 
 ---
 
