@@ -1,4 +1,8 @@
-# PayTM Clone [week 8.2]
+# SpendRipper, a PayTM Clone [week 8.2 - Harkirat Singh's cohort 2]
+
+SpendRipper is a full stack (MERN) app that mimics a wallet to help you feel better by spending a user's money by donating to others in the app making you a virtual phillanthropist. 😎
+
+It is not just an app, its a therapy 🥲
 
 ## 1. Get the mongoDB connection String
 
@@ -9,16 +13,17 @@
 
 - `Required:` username, password, firstName
 - `unique:` username
-- `Model`: User
-- Account will be placed first as it needs to be linked to the User document
-- This is how user document would look:
-  ![user-document](./Screenshots/user-document.png)
+- `Models`: User, Account, Transaction
+- `owner` field in Account Shema and `account` field in User schema plays important role here as it will be used for creating relationship between user and account `collections`.
+- `debit()` and `credit()` method are provided to `accountShema` for easy transaction handling
 
 ## 3. Create an express server with routes
 
 ```javascript
 const userRouter = require("./routes/userRouter");
+const accountRouter = require("./routes/accountRouter");
 app.use("/api/v1/users", userRouter);
+app.use("/api/v1/account", accountRouter);
 ```
 
 ## 4. Other required dependencies
